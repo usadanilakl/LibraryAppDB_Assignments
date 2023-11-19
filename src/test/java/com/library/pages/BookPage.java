@@ -42,9 +42,25 @@ public class BookPage extends BasePage {
     @FindBy(id = "book_group_id")
     public WebElement categoryDropdown;
 
+    @FindBy(id = "book_categories")
+    public WebElement bookCategoriesDropdown;
+
 
     @FindBy(id = "description")
     public WebElement description;
+    @FindBy(css = "input[placeholder='Book Name']")
+    public WebElement bookNameFromEditPopUp;
+    @FindBy(css = "input[placeholder='ISBN']")
+    public WebElement bookISBNFromEditPopUp;
+    @FindBy(css = "input[placeholder='Author']")
+    public WebElement bookAuthorFromEditPopUp;
+    @FindBy(css = "input[placeholder='Year']")
+    public WebElement bookYearFromEditPopUp;
+    @FindBy(css = "button.btn.default")
+    public WebElement closeEditWindow;
+
+
+
 
 
 

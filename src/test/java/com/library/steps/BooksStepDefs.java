@@ -21,6 +21,7 @@ public class BooksStepDefs {
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
     List<String> actualCategoryOptions = new ArrayList<>();
     String searchedBook;
+    String mostPopularCategory;
     @When("the user navigates to {string} page DK")
     public void the_user_navigates_to_page_dk(String module) {
         bookPage.navigateModule(module);
@@ -74,5 +75,21 @@ public class BooksStepDefs {
         System.out.println(DB_Util.getFirstRowFirstColumn());
         Assert.assertTrue(DB_Util.getRowCount()>0);
 
+    }
+
+    @When("I execute query to find most popular book genre DK")
+    public void i_execute_query_to_find_most_popular_book_genre_dk() {
+        String query = "select c.name as category, count(*) as popularity\n" +
+                "from book_borrow borr\n" +
+                "join books b on borr.book_id = b.id\n" +
+                "join book_categories c on b.book_category_id = c.id\n" +
+                "group by category\n" +
+                "order by popularity DESC";
+        DB_Util.runQuery(query);
+        mostPopularCategory = DB_Util.getFirstRowFirstColumn();
+    }
+    @Then("verify {string} is the most popular book genre DK.")
+    public void verify_is_the_most_popular_book_genre_dk(String string) {
+        Assert.assertEquals("Verification of the most popular category failed", string, mostPopularCategory);
     }
 }

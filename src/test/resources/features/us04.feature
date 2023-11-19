@@ -8,7 +8,7 @@ Feature: As a data consumer, I want UI and DB book information are match.
     And  the user clicks edit book button
     Then book information must match the Database
 
-  @DK @wip @db @ui
+  @DK @db @ui
   Scenario: Verify book information with DB DK
     Given the "librarian" on the home page DK
     And the user navigates to "Books" page DK

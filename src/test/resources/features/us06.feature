@@ -18,3 +18,21 @@ Feature: Books module
       | Book Name             | ISBN     | Year | Author          | Book Category        |
       | Head First Java       | 10112021 | 2021 | Kathy Sierra    | Action and Adventure |
       | The Scrum Field Guide | 11112021 | 2006 | Mitch Lacey     | Short Story          |
+
+  @DK @db @ui @us5
+  Scenario Outline: Verify added book is matching with DB DK
+    Given the "librarian" on the home page DK
+    And the user navigates to "Books" page DK
+    When the librarian click to add book DK
+    And the librarian enter book name "<Book Name>" DK
+    When the librarian enter ISBN "<ISBN>" DK
+    And the librarian enter year "<Year>" DK
+    When the librarian enter author "<Author>" DK
+    And the librarian choose the book category "<Book Category>" DK
+    And the librarian click to save changes DK
+    Then verify "The book has been created" message is displayed DK
+    And verify "<Book Name>" information must match with DB DK
+    Examples:
+      | Book Name             | ISBN     | Year | Author          | Book Category        |
+      | Head First Java DK       | 10112021 | 2021 | Kathy Sierra    | Action and Adventure |
+      | The Scrum Field Guide DK | 11112021 | 2006 | Mitch Lacey     | Short Story          |

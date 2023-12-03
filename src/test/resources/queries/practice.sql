@@ -38,3 +38,9 @@ select borrow.id, b.name, c.name from book_borrow borrow
 join books b on borrow.book_id = b.id
 join book_categories c on b.book_category_id = c.id
 where c.name = 'Fantasy';
+
+select  b.name, isbn, year, author,  bc.name from books b join book_categories bc on b.book_category_id = bc.id
+where b.name='The Scrum Field Guide DK';
+
+select  b.name, isbn, year, author,  bc.name from books b join book_categories bc on b.book_category_id = bc.id
+where b.name='Head First Java DK';
